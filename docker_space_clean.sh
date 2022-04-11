@@ -16,6 +16,7 @@ let img=`docker images -aq | wc -m`
 if [[ $img == 0 ]]; then
 	printf "Images are already removed\n\n";
 else
+	docker rmi -f $(docker images -aq) > /dev/null;
 	yes | docker images prune;
 	printf "Images have been removed\n\n";
 fi
