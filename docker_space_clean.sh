@@ -6,7 +6,8 @@ let cont=`docker ps -aq | wc -m`
 if [[ $cont == 0 ]]; then
 	printf "Containers are already removed\n\n";
 else
-	yes | docker container prune;
+	docker stop $(docker ps -aq)
+	yes | docker container prune > /dev/null;
 	printf "Containers have just been removed\n\n";
 fi
 
